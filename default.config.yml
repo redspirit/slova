@@ -1,0 +1,15 @@
+# site settings
+pagesDir: ./pages # .md files here
+themeDir: ./themes/light
+destinationDir: ./dist
+dateTimeFormat: DD.MM.YYYY # формат в котором записывается дата поста в мета-данных
+rootFileName: index
+debug: false
+
+# static server
+serverEnable: false
+serverPort: 9090
+
+# context data for templates
+context:
+  title: Site title
