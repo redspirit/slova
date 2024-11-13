@@ -7,7 +7,6 @@ rootFileName: index
 debug: false
 
 # static server
-serverEnable: false
 serverPort: 9090
 
 # context data for templates
