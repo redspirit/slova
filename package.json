@@ -6,9 +6,9 @@
   "scripts": {
     "build": "node index.js build",
     "serve": "node index.js serve",
-    "deploy": "node index.js deploy"
+    "deploy": "node index.js build & node index.js serve"
   },
-  "author": "",
+  "author": "RedSpirit",
   "license": "ISC",
   "dependencies": {
     "deepmerge": "^4.3.1",

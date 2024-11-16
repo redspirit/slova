@@ -26,10 +26,6 @@ if (cmd === 'build') {
         console.log('Static server listening on', port);
     });
 
-} else if (cmd === 'deploy') {
-    // build + serve
-
-
 } else {
     module.exports = {}
 }
