@@ -25,7 +25,7 @@ async function run() {
 
 
         // Сохраняем HTML файл
-        const outputDir = 'generated-html';
+        const outputDir = './dist/';
         const outputPath = path.join(outputDir, 'index2.html');
 
     if (!fs.existsSync(outputDir)) {
