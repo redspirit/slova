@@ -2,17 +2,17 @@ name: 'Slova Site Generator'
 description: 'Generate static html files'
 
 inputs:
-  pokemon_id:
-    description: 'number of the pokemon in the pokedex'
+  title:
+    description: 'Title of the generated HTML page'
     required: true
-    default: 1
+  content:
+    description: 'Content of the generated HTML page'
+    required: true
 
 outputs:
-  pokemon_name:
-    description: 'Name des Pokemons'
+  html_path:
+    description: 'Path to the generated HTML file'
 
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.pokemon_id}}
+  using: 'node20'
+  main: 'index.js'

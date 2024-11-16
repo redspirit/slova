@@ -11,6 +11,7 @@
   "author": "RedSpirit",
   "license": "ISC",
   "dependencies": {
+    "@actions/core": "^1.11.1",
     "deepmerge": "^4.3.1",
     "fs-extra": "^11.2.0",
     "listok.js": "^0.1.4",
