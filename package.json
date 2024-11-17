@@ -6,7 +6,8 @@
   "scripts": {
     "build": "node index.js build",
     "serve": "node index.js serve",
-    "deploy": "node index.js build & node index.js serve"
+    "deploy": "node index.js build & node index.js serve",
+    "pack": "ncc build index.js -o dist"
   },
   "author": "RedSpirit",
   "license": "ISC",
@@ -20,5 +21,8 @@
     "node-html-parser": "^6.1.13",
     "static-server": "^2.2.1",
     "yaml": "^2.6.0"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.38.3"
   }
 }
