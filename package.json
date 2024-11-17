@@ -7,7 +7,7 @@
     "build": "node index.js build",
     "serve": "node index.js serve",
     "deploy": "node index.js build & node index.js serve",
-    "pack": "ncc build index.js -o dist"
+    "pack": "ncc build build.js -o dist"
   },
   "author": "RedSpirit",
   "license": "ISC",

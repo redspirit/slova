@@ -1,51 +1,30 @@
-const fs = require('fs');
-const path = require('path');
-const core = require('@actions/core');
-const yaml = require('yaml');
+const config = require('./lib/config');
+const cmd = process.argv[2];
+const port = parseInt(process.argv[3] || config.serverPort);
 
-async function run() {
-    try {
-        // Получаем входные параметры
-        const title = core.getInput('title');
-        const content = core.getInput('content');
+if (cmd === 'build') {
+    // create html files
+    console.log('Build site...');
+    const build = require('./lib/build');
 
-        // Генерируем HTML
-        const html = `
-              <!DOCTYPE html>
-              <html lang="en">
-              <head>
-                  <meta charset="UTF-8">
-                  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                  <title>${title}</title>
-              </head>
-              <body>
-                  <h1>${title}</h1>
-                  <p>${content}</p>
-              </body>
-              </html>`;
+    build.start().then(() => {
+        console.log('Done!');
+    }, (error) => {
+        console.log('Build error', error);
+    });
 
+} else if (cmd === 'serve') {
+    // run static server
 
-        // Сохраняем HTML файл
-        const outputDir = './dist/';
-        const outputPath = path.join(outputDir, 'index2.html');
+    const StaticServer = require('static-server');
+    let serv = new StaticServer({
+        rootPath: config.destinationDir,
+        port: port,
+    });
+    serv.start(() => {
+        console.log('Static server listening on', port);
+    });
 
-    if (!fs.existsSync(outputDir)) {
-        fs.mkdirSync(outputDir);
-    }
-
-    fs.writeFileSync(outputPath, html);
-
-    // Устанавливаем путь для выхода
-    core.setOutput('html_path', outputPath);
-
-    console.log(`HTML generated: ${outputPath}`);
-
-    let confData = yaml.parse(fs.readFileSync('./slova.yml').toString());
-    console.log('Config data', confData);
-
-    } catch (error) {
-        core.setFailed(error.message);
-    }
+} else {
+    module.exports = {}
 }
-
-run().catch(console.error);
