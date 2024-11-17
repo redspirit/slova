@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const core = require('@actions/core');
+const yaml = require('yaml');
 
 async function run() {
     try {
@@ -38,6 +39,10 @@ async function run() {
     core.setOutput('html_path', outputPath);
 
     console.log(`HTML generated: ${outputPath}`);
+
+    let confData = yaml.parse(fs.readFileSync('./slova.yml').toString());
+    console.log('Config data', confData);
+
     } catch (error) {
         core.setFailed(error.message);
     }
