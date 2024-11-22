@@ -2,11 +2,17 @@ name: 'Slova Site Generator'
 description: 'Generate static html files'
 
 inputs:
-  title:
-    description: 'Title of the generated HTML page'
+  context:
+    description: 'Path to yml file with context data'
     required: true
-  content:
-    description: 'Content of the generated HTML page'
+  path:
+    description: 'Destination path to generate html'
+    required: true
+  pages:
+    description: 'Path to user .md pages'
+    required: true
+  theme:
+    description: 'Path to theme template directory'
     required: true
 
 outputs:

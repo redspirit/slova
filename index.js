@@ -7,7 +7,7 @@ if (cmd === 'build') {
     console.log('Build site...');
     const build = require('./lib/build');
 
-    build.start().then(() => {
+    build.start(config).then(() => {
         console.log('Done!');
     }, (error) => {
         console.log('Build error', error);
@@ -26,5 +26,7 @@ if (cmd === 'build') {
     });
 
 } else {
-    module.exports = {}
+    module.exports = {
+        build: require('./lib/build')
+    }
 }
