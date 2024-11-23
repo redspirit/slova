@@ -1,6 +1,6 @@
 {
   "name": "slova",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Генератор статического блога для Github Actions",
   "main": "index.js",
   "scripts": {
