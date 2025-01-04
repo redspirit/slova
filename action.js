@@ -29,7 +29,7 @@ if (!themeDir) {
 console.log(`HTML generated: ${destinationDir}`);
 
 let params = {
-    context,
+    configPath: context,
     destinationDir,
     pagesDir,
     themeDir,
