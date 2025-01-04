@@ -1,6 +1,4 @@
-const config = require('./lib/config');
 const argv = require('minimist')(process.argv.slice(2))._;
-const port = config.serverPort;
 const cmd = argv[0];
 
 if (cmd === 'build') {
@@ -8,7 +6,7 @@ if (cmd === 'build') {
     console.log('Build site...');
     const build = require('./lib/build');
 
-    build.start(config).then(() => {
+    build.start().then(() => {
         console.log('Done!');
     }, (error) => {
         console.log('Build error', error);
@@ -17,13 +15,14 @@ if (cmd === 'build') {
 } else if (cmd === 'serve') {
     // run static server
 
+    const {serverPort, destinationDir} = require('./lib/config');
     const StaticServer = require('static-server');
     let serv = new StaticServer({
-        rootPath: config.destinationDir,
-        port,
+        rootPath: destinationDir,
+        port: serverPort,
     });
     serv.start(() => {
-        console.log('Static server listening on', port);
+        console.log('Static server listening on', serverPort);
     });
 
 } else {
