@@ -12,7 +12,7 @@
 
 ```yaml
       - name: Slova generate HTML
-        uses: redspirit/slova@v1.11
+        uses: redspirit/slova@v1.12
         with:
           context: blog.yml
           path: './dist/'
