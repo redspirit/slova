@@ -6,16 +6,18 @@ if (cmd === 'build') {
     console.log('Build site...');
     const build = require('./lib/build');
 
-    build.start().then(() => {
-        console.log('Done!');
-    }, (error) => {
-        console.log('Build error', error);
-    });
-
+    build.start().then(
+        () => {
+            console.log('Done!');
+        },
+        (error) => {
+            console.log('Build error', error);
+        }
+    );
 } else if (cmd === 'serve') {
     // run static server
 
-    const {serverPort, destinationDir} = require('./lib/config');
+    const { serverPort, destinationDir } = require('./lib/config')();
     const StaticServer = require('static-server');
     let serv = new StaticServer({
         rootPath: destinationDir,
@@ -24,9 +26,8 @@ if (cmd === 'build') {
     serv.start(() => {
         console.log('Static server listening on', serverPort);
     });
-
 } else {
     module.exports = {
-        build: require('./lib/build')
-    }
+        build: require('./lib/build'),
+    };
 }

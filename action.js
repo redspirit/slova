@@ -1,18 +1,11 @@
-const yaml = require('yaml');
-const {readFileSync} = require('fs');
 const core = require('@actions/core');
 const build = require('./lib/build');
 
-const contextFileName = core.getInput('context');
+const configPath = core.getInput('context');
 const destinationDir = core.getInput('path');
 const pagesDir = core.getInput('pages');
 const themeDir = core.getInput('theme');
 core.setOutput('html_path', destinationDir);
-
-let context = {};
-if (contextFileName) {
-    context = yaml.parse(readFileSync(contextFileName).toString());
-}
 
 if (!destinationDir) {
     throw new Error('Destination directory is required');
@@ -29,7 +22,7 @@ if (!themeDir) {
 console.log(`HTML generated: ${destinationDir}`);
 
 let params = {
-    configPath: context,
+    configPath,
     destinationDir,
     pagesDir,
     themeDir,
